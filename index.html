@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -703,7 +703,13 @@
         const langToggle = document.getElementById('langToggle');
         const currentLangDisplay = document.getElementById('currentLang');
         const htmlElement = document.documentElement;
-        let isHebrew = false;
+        let isHebrew = true;
+
+        // Apply Hebrew on initial load
+        document.querySelectorAll('[data-en][data-he]').forEach(el => {
+            el.innerHTML = el.getAttribute('data-he');
+        });
+        currentLangDisplay.textContent = 'HE';
 
         langToggle.addEventListener('click', () => {
             isHebrew = !isHebrew;
