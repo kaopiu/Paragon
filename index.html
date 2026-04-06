@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paragon Technologies | Premium In-Car Media Screens</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <style>
+        /* RULE 1: Color Architecture (Two-Layer Token System) */
+        :root {
+            /* Layer 1: Strictly 5 Hex Values */
+            --color-primary: #630000;
+            --color-secondary: #810000;
+            --color-highlight: #EEEBDD;
+            --color-neutral: #1B1717;
+            --color-surface: #FFFFFF;
+
+            /* Layer 2: Derived Values using color-mix */
+            --bg-surface-a: var(--color-surface);
+            
+            /* Masculine, premium tints */
+            --bg-surface-b: color-mix(in srgb, var(--color-neutral) 8%, var(--color-surface));
+            --bg-surface-c: color-mix(in srgb, var(--color-highlight) 60%, var(--color-surface));
+            
+            /* Prominent Hero Background Tokens */
+            --bg-hero-bold: var(--color-primary);
+            --text-hero-bold: var(--color-surface);
+            --text-hero-bold-muted: color-mix(in srgb, var(--color-surface) 80%, transparent);
+            --hero-bold-emphasized: var(--color-highlight);
+            
+            /* Hero Dots */
+            --hero-dot-opacity: 0.15;
+            --color-hero-dot-base: color-mix(in srgb, var(--color-highlight) 30%, transparent);
+            --hero-dot-final: color-mix(in srgb, var(--color-hero-dot-base) calc(100% * var(--hero-dot-opacity)), transparent);
+            --hero-dot-texture: radial-gradient(var(--hero-dot-final) 1.5px, transparent 1.5px);
+            
+            /* CTA Buttons */
+            --btn-hero-bg: var(--color-highlight);
+            --btn-hero-text: var(--color-primary);
+            --btn-hero-hover: var(--color-surface);
+            
+            --btn-hero-sec-border: var(--color-highlight);
+            --btn-hero-sec-text: var(--color-highlight);
+            --btn-hero-sec-hover: color-mix(in srgb, var(--color-highlight) 15%, transparent);
+            
+            /* Hero Cards/Pills */
+            --hero-card-bg: color-mix(in srgb, var(--color-neutral) 30%, var(--color-primary));
+            --hero-card-border: color-mix(in srgb, var(--color-surface) 15%, transparent);
+
+            /* Standard Text Tokens */
+            --text-heading: color-mix(in srgb, var(--color-neutral) 95%, var(--color-primary));
+            --text-body: color-mix(in srgb, var(--color-neutral) 75%, var(--color-surface));
+            --text-muted: color-mix(in srgb, var(--color-neutral) 55%, var(--color-surface));
+            
+            /* Standard Button Tokens */
+            --btn-bg: var(--color-primary);
+            --btn-hover: color-mix(in srgb, var(--color-primary) 85%, var(--color-neutral));
+            --btn-text: var(--color-highlight);
+            
+            /* UI Elements and Dividers */
+            --border-subtle: color-mix(in srgb, var(--color-neutral) 15%, transparent);
+            --shadow-soft: color-mix(in srgb, var(--color-neutral) 10%, transparent);
+            --divider-fill-b: var(--bg-surface-b);
+            --divider-fill-a: var(--bg-surface-a);
+            
+            /* RULE 4: Typography Tokens */
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            --font-btn: 'Oswald', sans-serif;
+        }
+
+        /* Base & Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-body);
+            background-color: var(--bg-surface-a);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* RULE 4: Fluid Typography */
+        h1, h2, h3, .heading-font {
+            font-family: var(--font-heading);
+            color: var(--text-heading);
+            line-height: 1.2;
+        }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px; }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 24px; }
+        h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 16px; }
+        p { font-size: clamp(1rem, 1.5vw, 1.125rem); margin-bottom: 24px; }
+
+        .emphasized { color: var(--color-primary); }
+
+        /* RULE 5: Document Flow & 8pt Grid */
+        .container {
+            max-width: min(1200px, 100%);
+            margin: 0 auto;
+            padding-inline: 24px;
+        }
+
+        section {
+            padding-block: 96px;
+            position: relative;
+        }
+
+        /* RULE 3: Surface Cycle */
+        .surface-a { background-color: var(--bg-surface-a); }
+        .surface-b { background-color: var(--bg-surface-b); }
+        .surface-c { background-color: var(--bg-surface-c); }
+
+        /* Bold Hero Surface Override with Dots Texture */
+        .surface-hero {
+            background-color: var(--bg-hero-bold);
+            background-image: var(--hero-dot-texture);
+            background-size: 16px 16px;
+            color: var(--text-hero-bold);
+        }
+        .surface-hero h1, .surface-hero h3 {
+            color: var(--text-hero-bold);
+        }
+        .surface-hero p {
+            color: var(--text-hero-bold-muted);
+        }
+        .surface-hero .emphasized {
+            color: var(--hero-bold-emphasized);
+        }
+        
+        /* Bulletproofing inner card contrast */
+        .surface-hero .hero-card p {
+            color: var(--text-hero-bold-muted);
+        }
+        .surface-hero .hero-card h3,
+        .surface-hero .hero-pill span {
+            color: var(--text-hero-bold);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: color-mix(in srgb, var(--bg-surface-a) 95%, transparent);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-inline-start: -35px;
+        }
+        .logo-img {
+            height: 180px;
+            width: auto;
+            display: block;
+            margin-top: 7px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-body);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .lang-switch {
+            background: none;
+            border: 1px solid var(--border-subtle);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: var(--font-btn);
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 44px; /* RULE 6: 44px tap target */
+            min-width: 44px;
+        }
+
+        /* RULE 7: Mobile Navigation */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-heading);
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg-surface-a);
+            z-index: 2000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .mobile-overlay.active { display: flex; }
+        
+        .close-menu {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: none;
+            border: none;
+            font-size: 32px;
+            cursor: pointer;
+            color: var(--text-heading);
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        .mobile-overlay a {
+            font-size: 2rem;
+            font-family: var(--font-heading);
+            color: var(--text-heading);
+            text-decoration: none;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            font-family: var(--font-btn);
+            font-size: 1.125rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        .btn-primary {
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+        }
+        .btn-primary:hover {
+            background-color: var(--btn-hover);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-heading);
+            border: 2px solid var(--border-subtle);
+        }
+        .btn-secondary:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        /* Bold Hero Button Overrides */
+        .surface-hero .btn-primary {
+            background-color: var(--btn-hero-bg);
+            color: var(--btn-hero-text);
+        }
+        .surface-hero .btn-primary:hover {
+            background-color: var(--btn-hero-hover);
+        }
+        .surface-hero .btn-secondary {
+            border-color: var(--btn-hero-sec-border);
+            color: var(--btn-hero-sec-text);
+        }
+        .surface-hero .btn-secondary:hover {
+            background-color: var(--btn-hero-sec-hover);
+        }
+
+        /* RULE 10 & 14: Hero Section */
+        #hero {
+            padding-top: 240px;
+            padding-bottom: min(360px, calc(160px + 10vw)); 
+            min-height: 95vh; 
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-layout {
+            display: flex;
+            gap: 64px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content {
+            flex: 0 0 65%;
+        }
+
+        .hero-visual {
+            flex: 0 0 calc(35% - 64px);
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            max-width: min(400px, 100%);
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--hero-card-border);
+            box-shadow: 0 16px 32px var(--shadow-soft);
+            display: block;
+        }
+
+        /* Bold Hero Visual Overrides */
+        .surface-hero .hero-card {
+            background-color: var(--hero-card-bg);
+            border: 1px solid var(--hero-card-border);
+        }
+        .surface-hero .hero-pill {
+            background-color: var(--hero-card-bg);
+            border: 1px solid var(--hero-card-border);
+        }
+        .surface-hero .hero-pill-icon {
+            background-color: var(--color-highlight);
+        }
+
+        .hero-card {
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 16px 32px var(--shadow-soft);
+        }
+
+        .hero-pill {
+            padding: 16px 24px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-weight: 600;
+        }
+
+        .hero-pill-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        /* RULE 9 & NEW SEAM RULE: Angular Wave Dividers */
+        .divider-wrapper {
+            position: absolute;
+            bottom: -1px; /* The definitive fix for sub-pixel seam rendering */
+            left: 0;
+            width: 100%;
+            line-height: 0;
+            font-size: 0;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .divider-wrapper svg {
+            width: 100%;
+            display: block;
+        }
+
+        /* About Section */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 16px 32px var(--shadow-soft);
+            display: block;
+        }
+
+        /* RULE 15: Testimonials Carousel */
+        #testimonials {
+            padding-bottom: 160px; /* Ensures content isn't clipped by divider below */
+        }
+        
+        .carousel-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 48px 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .testimonial-card {
+            flex: 0 0 100%;
+            padding: 40px;
+            background-color: var(--bg-surface-a);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 8px 24px var(--shadow-soft);
+        }
+
+        .testimonial-text {
+            font-size: 1.25rem;
+            font-style: italic;
+            margin-bottom: 24px;
+        }
+
+        .testimonial-author {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        /* RULE 11: Contact Form */
+        .contact-layout {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-weight: 600;
+            color: var(--text-heading);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 16px;
+            font-family: var(--font-body);
+            font-size: 16px; /* RULE 6: prevent iOS zoom */
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            background-color: var(--bg-surface-b);
+            color: var(--text-body);
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+        }
+
+        /* Minimal Footer Updates (With Contrast Fixes) */
+        footer {
+            background-color: var(--color-neutral);
+            padding: 16px 0;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .footer-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-layout {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.875rem; 
+            /* Contrast Fix: Explicitly light grey against the black footer */
+            color: color-mix(in srgb, var(--color-surface) 80%, transparent); 
+        }
+        
+        footer h3 {
+            margin: 0;
+            font-size: 1rem;
+            display: inline;
+            /* Contrast Fix: Explicitly white to override the global heading dark token */
+            color: var(--color-surface); 
+        }
+
+        footer a {
+            color: var(--color-highlight);
+            text-decoration: none;
+        }
+
+        /* RULE 6: Responsiveness */
+        @media (max-width: 860px) {
+            .hero-layout, .about-layout {
+                flex-direction: column;
+                grid-template-columns: 1fr;
+            }
+            .hero-visual {
+                display: none;
+            }
+            #hero {
+                padding-top: 160px;
+                padding-bottom: 160px;
+                min-height: auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .hero-actions { flex-direction: column; }
+        }
+
+        /* RTL Support */
+        [dir="rtl"] .hero-pill-icon { margin-left: 16px; margin-right: 0; }
+        [dir="rtl"] .nav-links { gap: 32px; }
+        [dir="rtl"] .footer-layout { text-align: right; }
+        @media (min-width: 768px) and (max-width: 1200px) {
+             [dir="rtl"] .footer-layout { flex-direction: row-reverse; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-container">
+            <a href="#hero" class="logo"><img src="paragon.png" alt="Paragon" class="logo-img"></a>
+            <div class="nav-links">
+                <a href="#about" data-en="About Us" data-he="עלינו">About Us</a>
+                <a href="#testimonials" data-en="Testimonials" data-he="המלצות">Testimonials</a>
+                <a href="#contact" data-en="Contact" data-he="צור קשר">Contact</a>
+                <button class="lang-switch" id="langToggle">
+                    <span id="currentLang">EN</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16L3 12l4-4M17 8l4 4-4 4M3 12h18"/></svg>
+                </button>
+            </div>
+            <button class="hamburger" id="hamburgerMenu">☰</button>
+        </div>
+    </nav>
+
+    <div class="mobile-overlay" id="mobileMenu">
+        <button class="close-menu" id="closeMenu">×</button>
+        <a href="#about" class="mobile-link" data-en="About Us" data-he="עלינו">About Us</a>
+        <a href="#testimonials" class="mobile-link" data-en="Testimonials" data-he="המלצות">Testimonials</a>
+        <a href="#contact" class="mobile-link" data-en="Contact" data-he="צור קשר">Contact</a>
+    </div>
+
+    <section id="hero" class="surface-hero">
+        <div class="container hero-layout">
+            <div class="hero-content">
+                <h1 data-en="Luxury In-Car <span class='emphasized'>Media Screens</span>" data-he="מסכי מדיה <span class='emphasized'>יוקרתיים</span> לרכב">Luxury In-Car <span class="emphasized">Media Screens</span></h1>
+                <p data-en="Elevate your driving experience with premium, sharply designed media installations. Lorem ipsum dolor sit amet, consectetur adipiscing elit." data-he="שדרג את חווית הנהיגה שלך עם התקנות מדיה פרימיום. לורם איפסום דולור סיט אמט.">Elevate your driving experience with premium, sharply designed media installations. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary" data-en="Get a Quote" data-he="קבל הצעת מחיר">Get a Quote</a>
+                    <a href="#about" class="btn btn-secondary" data-en="Learn More" data-he="למידע נוסף">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="hero-image.jpg" alt="Luxury Car Interior Screen" class="hero-image">
+                <div class="hero-card">
+                    <h3 data-en="Premium Interface" data-he="ממשק פרימיום">Premium Interface</h3>
+                    <p data-en="Seamless integration with your vehicle's aesthetic." data-he="שילוב חלק עם האסתטיקה של הרכב שלך.">Seamless integration with your vehicle's aesthetic.</p>
+                </div>
+                <div class="hero-pill">
+                    <div class="hero-pill-icon"></div>
+                    <span data-en="4K Resolution Displays" data-he="תצוגות ברזולוציית 4K">4K Resolution Displays</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="divider-wrapper">
+            <svg preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1200 120L0 120 0 0 1200 120z" fill="var(--divider-fill-b)"/>
+            </svg>
+        </div>
+    </section>
+
+    <section id="about" class="surface-b">
+        <div class="container about-layout">
+            <img src="about-image.jpg" alt="Professional Screen Installation Process" class="about-image">
+            <div>
+                <h2 data-en="Excellence in <span class='emphasized'>Installation</span>" data-he="מצוינות ב<span class='emphasized'>התקנה</span>">Excellence in <span class="emphasized">Installation</span></h2>
+                <p data-en="Paragon Technologies stands at the intersection of luxury and technology. We provide bespoke media screen solutions tailored to the interior of high-end vehicles." data-he="חברת פראגון טכנולוגיות נמצאת בצומת של יוקרה וטכנולוגיה. אנו מספקים פתרונות מסכי מדיה בהתאמה אישית.">Paragon Technologies stands at the intersection of luxury and technology. We provide bespoke media screen solutions tailored to the interior of high-end vehicles.</p>
+                <p data-en="Dolor sit amet, consectetur adipiscing elit. Nullam in odio vel lectus convallis accumsan." data-he="דולור סיט אמט, קונסקטור אדיפיסינג אלית. נואלם אין אודיו ול לקטוס קונוואליס.">Dolor sit amet, consectetur adipiscing elit. Nullam in odio vel lectus convallis accumsan.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="surface-c">
+        <div class="container">
+            <h2 style="text-align: center;" data-en="Client <span class='emphasized'>Experiences</span>" data-he="חוויות <span class='emphasized'>לקוחות</span>">Client <span class="emphasized">Experiences</span></h2>
+            
+            <div class="carousel-container">
+                <div class="carousel-track" id="testimonialTrack">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text" data-en="&quot;The installation was flawless. It feels like it came straight from the factory.&quot;" data-he="&quot;ההתקנה הייתה מושלמת. זה מרגיש כאילו זה הגיע ישר מהמפעל.&quot;">"The installation was flawless. It feels like it came straight from the factory."</p>
+                        <p class="testimonial-author">- David R.</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text" data-en="&quot;Paragon transformed the interior of my car. True luxury and premium service.&quot;" data-he="&quot;פראגון שינו את הפנים של הרכב שלי. יוקרה אמיתית ושירות פרימיום.&quot;">"Paragon transformed the interior of my car. True luxury and premium service."</p>
+                        <p class="testimonial-author">- Sarah M.</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text" data-en="&quot;Sharp, beautiful screens and highly professional technicians.&quot;" data-he="&quot;מסכים חדים ויפים וטכנאים מקצועיים ביותר.&quot;">"Sharp, beautiful screens and highly professional technicians."</p>
+                        <p class="testimonial-author">- Michael T.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider-wrapper">
+            <svg preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 120 L1200 120 L1200 0 Z" fill="var(--divider-fill-a)"/>
+            </svg>
+        </div>
+    </section>
+
+    <section id="contact" class="surface-a">
+        <div class="container contact-layout">
+            <h2 style="text-align: center;" data-en="Contact <span class='emphasized'>Us</span>" data-he="צור <span class='emphasized'>קשר</span>">Contact <span class="emphasized">Us</span></h2>
+            <p style="text-align: center; margin-bottom: 48px;" data-en="Ready to upgrade your vehicle? Reach out to schedule a consultation." data-he="מוכן לשדרג את הרכב שלך? פנה אלינו לקביעת פגישת ייעוץ.">Ready to upgrade your vehicle? Reach out to schedule a consultation.</p>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name" data-en="Full Name *" data-he="שם מלא *">Full Name *</label>
+                    <input type="text" id="name" name="name" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="email" data-en="Email Address *" data-he="כתובת אימייל *">Email Address *</label>
+                    <input type="email" id="email" name="email" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="phone" data-en="Phone Number" data-he="מספר טלפון">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" autocomplete="tel">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 16px;" id="submitBtn" data-en="Send Message" data-he="שלח הודעה">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-layout">
+            <div>
+                <h3 data-en="Paragon Technologies" data-he="פראגון טכנולוגיות">Paragon Technologies</h3>
+                <p style="display: inline; margin-left: 8px;">&copy; 2026 <a href="#hero">Paragon</a>. All Rights Reserved.</p>
+            </div>
+            <div>
+                <p data-en="contact@paragontech.placeholder | +1-800-000-0000" data-he="contact@paragontech.placeholder | +1-800-000-0000">contact@paragontech.placeholder | +1-800-000-0000</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Switcher Logic
+        const langToggle = document.getElementById('langToggle');
+        const currentLangDisplay = document.getElementById('currentLang');
+        const htmlElement = document.documentElement;
+        let isHebrew = false;
+
+        langToggle.addEventListener('click', () => {
+            isHebrew = !isHebrew;
+            htmlElement.setAttribute('dir', isHebrew ? 'rtl' : 'ltr');
+            htmlElement.setAttribute('lang', isHebrew ? 'he' : 'en');
+            currentLangDisplay.textContent = isHebrew ? 'HE' : 'EN';
+
+            document.querySelectorAll('[data-en][data-he]').forEach(el => {
+                el.innerHTML = isHebrew ? el.getAttribute('data-he') : el.getAttribute('data-en');
+            });
+        });
+
+        // Mobile Menu Logic
+        const hamburger = document.getElementById('hamburgerMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        hamburger.addEventListener('click', () => mobileMenu.classList.add('active'));
+        closeMenu.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        });
+
+        // Testimonial Carousel Logic
+        const track = document.getElementById('testimonialTrack');
+        const cards = document.querySelectorAll('.testimonial-card');
+        let currentIndex = 0;
+
+        function rotateCarousel() {
+            currentIndex = (currentIndex + 1) % cards.length;
+            const translateValue = isHebrew ? (currentIndex * 100) : -(currentIndex * 100);
+            track.style.transform = `translateX(${translateValue}%)`;
+        }
+        setInterval(rotateCarousel, 4000);
+
+        // Form Submission Feedback
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const originalText = submitBtn.innerHTML;
+            const originalColor = submitBtn.style.backgroundColor;
+            
+            submitBtn.innerHTML = isHebrew ? 'נשלח בהצלחה!' : 'Sent Successfully!';
+            submitBtn.style.backgroundColor = 'color-mix(in srgb, var(--color-highlight) 50%, green)';
+            submitBtn.style.color = '#FFFFFF';
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.backgroundColor = originalColor;
+                submitBtn.style.color = '';
+                form.reset();
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
