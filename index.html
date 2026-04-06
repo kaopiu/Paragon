@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Paragon Technologies — Premium in-car media screens engineered for luxury vehicles. Factory-grade precision, 4K resolution, certified professional installation.">
     <title>Paragon Technologies | Premium In-Car Media Screens</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&family=Oswald:wght@500&display=swap" rel="stylesheet">
     <style>
@@ -15,66 +16,52 @@
             --color-neutral: #1B1717;
             --color-surface: #FFFFFF;
 
-            /* Layer 2: Derived Values using color-mix */
+            /* Layer 2: Derived Values */
             --bg-surface-a: var(--color-surface);
-            
-            /* Masculine, premium tints */
-            --bg-surface-b: color-mix(in srgb, var(--color-neutral) 8%, var(--color-surface));
+            --bg-surface-b: color-mix(in srgb, var(--color-neutral) 5%, var(--color-surface));
             --bg-surface-c: color-mix(in srgb, var(--color-highlight) 60%, var(--color-surface));
-            
-            /* Prominent Hero Background Tokens */
+
+            /* Hero */
             --bg-hero-bold: var(--color-primary);
             --text-hero-bold: var(--color-surface);
             --text-hero-bold-muted: color-mix(in srgb, var(--color-surface) 80%, transparent);
             --hero-bold-emphasized: var(--color-highlight);
-            
-            /* Hero Dots */
             --hero-dot-opacity: 0.15;
             --color-hero-dot-base: color-mix(in srgb, var(--color-highlight) 30%, transparent);
             --hero-dot-final: color-mix(in srgb, var(--color-hero-dot-base) calc(100% * var(--hero-dot-opacity)), transparent);
             --hero-dot-texture: radial-gradient(var(--hero-dot-final) 1.5px, transparent 1.5px);
-            
-            /* CTA Buttons */
             --btn-hero-bg: var(--color-highlight);
             --btn-hero-text: var(--color-primary);
             --btn-hero-hover: var(--color-surface);
-            
             --btn-hero-sec-border: var(--color-highlight);
             --btn-hero-sec-text: var(--color-highlight);
             --btn-hero-sec-hover: color-mix(in srgb, var(--color-highlight) 15%, transparent);
-            
-            /* Hero Cards/Pills */
             --hero-card-bg: color-mix(in srgb, var(--color-neutral) 30%, var(--color-primary));
             --hero-card-border: color-mix(in srgb, var(--color-surface) 15%, transparent);
 
-            /* Standard Text Tokens */
+            /* Text */
             --text-heading: color-mix(in srgb, var(--color-neutral) 95%, var(--color-primary));
             --text-body: color-mix(in srgb, var(--color-neutral) 75%, var(--color-surface));
-            --text-muted: color-mix(in srgb, var(--color-neutral) 55%, var(--color-surface));
-            
-            /* Standard Button Tokens */
+            --text-muted: color-mix(in srgb, var(--color-neutral) 50%, var(--color-surface));
+
+            /* Buttons */
             --btn-bg: var(--color-primary);
             --btn-hover: color-mix(in srgb, var(--color-primary) 85%, var(--color-neutral));
             --btn-text: var(--color-highlight);
-            
-            /* UI Elements and Dividers */
-            --border-subtle: color-mix(in srgb, var(--color-neutral) 15%, transparent);
-            --shadow-soft: color-mix(in srgb, var(--color-neutral) 10%, transparent);
+
+            /* UI */
+            --border-subtle: color-mix(in srgb, var(--color-neutral) 12%, transparent);
+            --shadow-soft: color-mix(in srgb, var(--color-neutral) 8%, transparent);
             --divider-fill-b: var(--bg-surface-b);
             --divider-fill-a: var(--bg-surface-a);
-            
-            /* RULE 4: Typography Tokens */
+
+            /* Typography */
             --font-heading: 'Montserrat', sans-serif;
             --font-body: 'Open Sans', sans-serif;
             --font-btn: 'Oswald', sans-serif;
         }
 
-        /* Base & Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: var(--font-body);
@@ -84,61 +71,52 @@
             overflow-x: hidden;
         }
 
-        /* RULE 4: Fluid Typography */
         h1, h2, h3, .heading-font {
             font-family: var(--font-heading);
             color: var(--text-heading);
             line-height: 1.2;
         }
-        h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px; }
-        h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 24px; }
-        h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 16px; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 24px; letter-spacing: -0.03em; }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 24px; letter-spacing: -0.025em; }
+        h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); margin-bottom: 16px; }
         p { font-size: clamp(1rem, 1.5vw, 1.125rem); margin-bottom: 24px; }
 
         .emphasized { color: var(--color-primary); }
 
-        /* RULE 5: Document Flow & 8pt Grid */
         .container {
             max-width: min(1200px, 100%);
             margin: 0 auto;
             padding-inline: 24px;
         }
 
-        section {
-            padding-block: 96px;
-            position: relative;
-        }
+        section { padding-block: 96px; position: relative; }
 
-        /* RULE 3: Surface Cycle */
         .surface-a { background-color: var(--bg-surface-a); }
         .surface-b { background-color: var(--bg-surface-b); }
         .surface-c { background-color: var(--bg-surface-c); }
 
-        /* Bold Hero Surface Override with Dots Texture */
         .surface-hero {
             background-color: var(--bg-hero-bold);
             background-image: var(--hero-dot-texture);
             background-size: 16px 16px;
             color: var(--text-hero-bold);
         }
-        .surface-hero h1, .surface-hero h3 {
-            color: var(--text-hero-bold);
-        }
-        .surface-hero p {
-            color: var(--text-hero-bold-muted);
-        }
-        .surface-hero .emphasized {
-            color: var(--hero-bold-emphasized);
-        }
-        
-        /* Bulletproofing inner card contrast */
-        .surface-hero .hero-card p {
-            color: var(--text-hero-bold-muted);
-        }
+        .surface-hero h1, .surface-hero h3 { color: var(--text-hero-bold); }
+        .surface-hero p { color: var(--text-hero-bold-muted); }
+        .surface-hero .emphasized { color: var(--hero-bold-emphasized); }
+        .surface-hero h2 { color: var(--text-hero-bold); }
+        .surface-hero .section-label { color: var(--hero-bold-emphasized); opacity: 0.85; }
+        .surface-hero .hero-card p { color: var(--text-hero-bold-muted); }
         .surface-hero .hero-card h3,
-        .surface-hero .hero-pill span {
-            color: var(--text-hero-bold);
-        }
+        .surface-hero .hero-pill span { color: var(--text-hero-bold); }
+        .surface-hero .carousel-dot { background-color: color-mix(in srgb, var(--color-surface) 25%, transparent); }
+        .surface-hero .carousel-dot.active { background-color: var(--color-highlight); transform: scale(1.5); }
+        /* Restore normal text colors inside white testimonial cards */
+        .surface-hero .testimonial-card { color: var(--text-body); }
+        .surface-hero .testimonial-card p { color: var(--text-body); }
+        .surface-hero .testimonial-author { color: var(--text-heading); }
+        .surface-hero .testimonial-role { color: var(--text-muted); }
+        .surface-hero .testimonial-stars { color: var(--color-primary); }
 
         /* Navigation */
         nav {
@@ -164,12 +142,7 @@
             align-items: center;
             margin-inline-start: -35px;
         }
-        .logo-img {
-            height: 180px;
-            width: auto;
-            display: block;
-            margin-top: 7px;
-        }
+        .logo-img { height: 180px; width: auto; display: block; margin-top: 7px; }
 
         .nav-links {
             display: flex;
@@ -181,12 +154,9 @@
             text-decoration: none;
             color: var(--text-body);
             font-weight: 600;
-            transition: color 0.3s ease;
+            transition: color 0.15s ease;
         }
-
-        .nav-links a:hover {
-            color: var(--color-primary);
-        }
+        .nav-links a:hover { color: var(--color-primary); }
 
         .lang-switch {
             background: none;
@@ -199,11 +169,10 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            min-height: 44px; /* RULE 6: 44px tap target */
+            min-height: 44px;
             min-width: 44px;
         }
 
-        /* RULE 7: Mobile Navigation */
         .hamburger {
             display: none;
             background: none;
@@ -229,9 +198,8 @@
             align-items: center;
             gap: 32px;
         }
-
         .mobile-overlay.active { display: flex; }
-        
+
         .close-menu {
             position: absolute;
             top: 24px;
@@ -264,67 +232,33 @@
             letter-spacing: 1px;
             text-decoration: none;
             border-radius: 4px;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             border: none;
             cursor: pointer;
             min-height: 44px;
             min-width: 44px;
         }
+        .btn-primary { background-color: var(--btn-bg); color: var(--btn-text); }
+        .btn-primary:hover { background-color: var(--btn-hover); transform: translateY(-1px); box-shadow: 0 4px 16px var(--shadow-soft); }
+        .btn-secondary { background-color: transparent; color: var(--text-heading); border: 2px solid var(--border-subtle); }
+        .btn-secondary:hover { border-color: var(--color-primary); color: var(--color-primary); }
 
-        .btn-primary {
-            background-color: var(--btn-bg);
-            color: var(--btn-text);
-        }
-        .btn-primary:hover {
-            background-color: var(--btn-hover);
-        }
+        .surface-hero .btn-primary { background-color: var(--btn-hero-bg); color: var(--btn-hero-text); }
+        .surface-hero .btn-primary:hover { background-color: var(--btn-hero-hover); }
+        .surface-hero .btn-secondary { border-color: var(--btn-hero-sec-border); color: var(--btn-hero-sec-text); }
+        .surface-hero .btn-secondary:hover { background-color: var(--btn-hero-sec-hover); }
 
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-heading);
-            border: 2px solid var(--border-subtle);
-        }
-        .btn-secondary:hover {
-            border-color: var(--color-primary);
-            color: var(--color-primary);
-        }
-
-        /* Bold Hero Button Overrides */
-        .surface-hero .btn-primary {
-            background-color: var(--btn-hero-bg);
-            color: var(--btn-hero-text);
-        }
-        .surface-hero .btn-primary:hover {
-            background-color: var(--btn-hero-hover);
-        }
-        .surface-hero .btn-secondary {
-            border-color: var(--btn-hero-sec-border);
-            color: var(--btn-hero-sec-text);
-        }
-        .surface-hero .btn-secondary:hover {
-            background-color: var(--btn-hero-sec-hover);
-        }
-
-        /* RULE 10 & 14: Hero Section */
+        /* Hero */
         #hero {
             padding-top: 240px;
-            padding-bottom: min(360px, calc(160px + 10vw)); 
-            min-height: 95vh; 
+            padding-bottom: min(360px, calc(160px + 10vw));
+            min-height: 95vh;
             display: flex;
             align-items: center;
         }
 
-        .hero-layout {
-            display: flex;
-            gap: 64px;
-            align-items: center;
-            width: 100%;
-        }
-
-        .hero-content {
-            flex: 0 0 65%;
-        }
-
+        .hero-layout { display: flex; gap: 64px; align-items: center; width: 100%; }
+        .hero-content { flex: 0 0 65%; }
         .hero-visual {
             flex: 0 0 calc(35% - 64px);
             display: flex;
@@ -332,7 +266,31 @@
             gap: 24px;
             max-width: min(400px, 100%);
         }
-        
+
+        .hero-eyebrow {
+            display: inline-block;
+            font-family: var(--font-btn);
+            font-size: 0.8125rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--hero-bold-emphasized);
+            background-color: color-mix(in srgb, var(--color-highlight) 15%, transparent);
+            border: 1px solid color-mix(in srgb, var(--color-highlight) 30%, transparent);
+            padding: 6px 14px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .hero-trust {
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-hero-bold-muted);
+            font-size: 0.875rem;
+        }
+        .hero-trust-divider { width: 1px; height: 16px; background-color: color-mix(in srgb, var(--color-surface) 25%, transparent); }
+
         .hero-image {
             width: 100%;
             height: auto;
@@ -344,50 +302,19 @@
             display: block;
         }
 
-        /* Bold Hero Visual Overrides */
-        .surface-hero .hero-card {
-            background-color: var(--hero-card-bg);
-            border: 1px solid var(--hero-card-border);
-        }
-        .surface-hero .hero-pill {
-            background-color: var(--hero-card-bg);
-            border: 1px solid var(--hero-card-border);
-        }
-        .surface-hero .hero-pill-icon {
-            background-color: var(--color-highlight);
-        }
+        .surface-hero .hero-card { background-color: var(--hero-card-bg); border: 1px solid var(--hero-card-border); }
+        .surface-hero .hero-pill { background-color: var(--hero-card-bg); border: 1px solid var(--hero-card-border); }
+        .surface-hero .hero-pill-icon { background-color: var(--color-highlight); }
 
-        .hero-card {
-            padding: 24px;
-            border-radius: 8px;
-            box-shadow: 0 16px 32px var(--shadow-soft);
-        }
+        .hero-card { padding: 24px; border-radius: 8px; box-shadow: 0 16px 32px var(--shadow-soft); }
+        .hero-pill { padding: 16px 24px; border-radius: 40px; display: flex; align-items: center; gap: 16px; font-weight: 600; }
+        .hero-pill-icon { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; }
+        .hero-actions { display: flex; gap: 16px; margin-top: 32px; }
 
-        .hero-pill {
-            padding: 16px 24px;
-            border-radius: 40px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            font-weight: 600;
-        }
-
-        .hero-pill-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 16px;
-            margin-top: 32px;
-        }
-
-        /* RULE 9 & NEW SEAM RULE: Angular Wave Dividers */
+        /* Dividers */
         .divider-wrapper {
             position: absolute;
-            bottom: -1px; /* The definitive fix for sub-pixel seam rendering */
+            bottom: -1px;
             left: 0;
             width: 100%;
             line-height: 0;
@@ -395,112 +322,248 @@
             overflow: hidden;
             z-index: 10;
         }
+        .divider-wrapper svg { width: 100%; display: block; }
 
-        .divider-wrapper svg {
-            width: 100%;
+        /* Section eyebrow label */
+        .section-label {
             display: block;
+            font-family: var(--font-btn);
+            font-size: 0.75rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            margin-bottom: 12px;
+        }
+
+        /* Stats Bar */
+        #stats { padding-block: 0; }
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .stat-item {
+            padding: 40px 32px;
+            text-align: center;
+            border-inline-end: 1px solid var(--border-subtle);
+        }
+        .stat-item:last-child { border-inline-end: none; }
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 800;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: 8px;
+            letter-spacing: -0.03em;
+        }
+        .stat-label {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
         }
 
         /* About Section */
-        .about-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: center;
-        }
-
+        .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
         .about-image {
             width: 100%;
             aspect-ratio: 4/3;
             object-fit: cover;
             border-radius: 8px;
             border: 1px solid var(--border-subtle);
-            box-shadow: 0 16px 32px var(--shadow-soft);
+            box-shadow: 0 8px 32px var(--shadow-soft);
             display: block;
         }
 
-        /* RULE 15: Testimonials Carousel */
-        #testimonials {
-            padding-bottom: 160px; /* Ensures content isn't clipped by divider below */
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 56px;
         }
-        
-        .carousel-container {
+        .feature-card {
+            padding: 40px 32px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            background-color: var(--bg-surface-a);
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .feature-card:hover {
+            box-shadow: 0 8px 32px var(--shadow-soft);
+            transform: translateY(-2px);
+        }
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            color: var(--color-primary);
+            margin-bottom: 24px;
+            display: block;
+        }
+        .feature-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .feature-card p { font-size: 0.9375rem; margin-bottom: 0; color: var(--text-muted); line-height: 1.7; }
+
+        /* Process Section */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            margin-top: 56px;
             position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            overflow: hidden;
-            padding: 48px 0;
         }
-
-        .carousel-track {
+        .process-grid::before {
+            content: '';
+            position: absolute;
+            top: 32px;
+            left: 16.667%;
+            right: 16.667%;
+            height: 1px;
+            background-color: var(--border-subtle);
+        }
+        .process-step { text-align: center; }
+        .process-number {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+            color: var(--color-highlight);
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 800;
             display: flex;
-            transition: transform 0.5s ease-in-out;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            position: relative;
+            z-index: 1;
+        }
+        .process-step h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .process-step p {
+            font-size: 0.9375rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            max-width: 240px;
+            margin-inline: auto;
+            line-height: 1.7;
         }
 
-        .testimonial-card {
-            flex: 0 0 100%;
-            padding: 40px;
+        /* Testimonials Static Grid */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 56px;
+        }
+        .testimonial-static {
+            padding: 32px;
             background-color: var(--bg-surface-a);
             border: 1px solid var(--border-subtle);
             border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 8px 24px var(--shadow-soft);
         }
-
-        .testimonial-text {
-            font-size: 1.25rem;
-            font-style: italic;
+        .testimonial-stars {
+            color: var(--color-primary);
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+            letter-spacing: 3px;
+        }
+        .testimonial-quote {
+            font-size: 0.9375rem;
+            line-height: 1.75;
+            color: var(--text-body);
             margin-bottom: 24px;
+            font-style: italic;
         }
-
-        .testimonial-author {
+        .testimonial-meta { display: flex; align-items: center; gap: 14px; }
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+            color: var(--color-highlight);
             font-family: var(--font-heading);
             font-weight: 700;
-            color: var(--color-primary);
-        }
-
-        /* RULE 11: Contact Form */
-        .contact-layout {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 24px;
+            font-size: 0.9375rem;
             display: flex;
-            flex-direction: column;
-            gap: 8px;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
-
-        label {
-            font-weight: 600;
+        .testimonial-name {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.875rem;
             color: var(--text-heading);
+            margin-bottom: 2px;
+        }
+        .testimonial-role { font-size: 0.8125rem; color: var(--text-muted); }
+
+        /* FAQ */
+        #faq { padding-bottom: 96px; }
+        .faq-layout { max-width: 800px; margin: 56px auto 0; }
+        #faq details { border-bottom: 1px solid var(--border-subtle); }
+        #faq details:first-of-type { border-top: 1px solid var(--border-subtle); }
+        #faq summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            cursor: pointer;
+            list-style: none;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.0625rem;
+            color: var(--text-heading);
+            gap: 24px;
+            transition: color 0.15s ease;
+        }
+        #faq summary:hover { color: var(--color-primary); }
+        #faq summary::-webkit-details-marker { display: none; }
+        .faq-icon {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            color: var(--color-primary);
+            transition: transform 0.2s ease;
+        }
+        #faq details[open] .faq-icon { transform: rotate(45deg); }
+        #faq details p {
+            padding: 0 0 24px;
+            color: var(--text-body);
+            margin: 0;
+            font-size: 1rem;
+            max-width: 720px;
+            line-height: 1.75;
         }
 
-        input, textarea {
+        /* Contact Section */
+        .contact-layout { max-width: 600px; margin: 0 auto; }
+        .form-group { margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; }
+        label { font-weight: 600; color: var(--text-heading); font-size: 0.9375rem; }
+        input, textarea, select {
             width: 100%;
             padding: 16px;
             font-family: var(--font-body);
-            font-size: 16px; /* RULE 6: prevent iOS zoom */
+            font-size: 16px;
             border: 1px solid var(--border-subtle);
             border-radius: 4px;
             background-color: var(--bg-surface-b);
             color: var(--text-body);
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
         }
-
-        input:focus, textarea:focus {
+        input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 15%, transparent);
         }
+        textarea { resize: vertical; }
 
-        /* Minimal Footer Updates (With Contrast Fixes) */
+        /* Footer */
         footer {
             background-color: var(--color-neutral);
             padding: 16px 0;
             border-top: 1px solid var(--border-subtle);
         }
-
         .footer-layout {
             display: flex;
             flex-direction: column;
@@ -508,63 +571,188 @@
             gap: 8px;
             text-align: center;
         }
-
         @media (min-width: 768px) {
-            .footer-layout {
-                flex-direction: row;
-                justify-content: space-between;
-                text-align: left;
-            }
+            .footer-layout { flex-direction: row; justify-content: space-between; text-align: left; }
         }
+        footer p { margin: 0; font-size: 0.875rem; color: color-mix(in srgb, var(--color-surface) 80%, transparent); }
+        footer h3 { margin: 0; font-size: 1rem; display: inline; color: var(--color-surface); }
+        footer a { color: var(--color-highlight); text-decoration: none; }
 
-        footer p {
-            margin: 0;
-            font-size: 0.875rem; 
-            /* Contrast Fix: Explicitly light grey against the black footer */
-            color: color-mix(in srgb, var(--color-surface) 80%, transparent); 
-        }
-        
-        footer h3 {
-            margin: 0;
-            font-size: 1rem;
-            display: inline;
-            /* Contrast Fix: Explicitly white to override the global heading dark token */
-            color: var(--color-surface); 
-        }
-
-        footer a {
-            color: var(--color-highlight);
-            text-decoration: none;
-        }
-
-        /* RULE 6: Responsiveness */
+        /* Responsive */
         @media (max-width: 860px) {
-            .hero-layout, .about-layout {
-                flex-direction: column;
-                grid-template-columns: 1fr;
-            }
-            .hero-visual {
-                display: none;
-            }
-            #hero {
-                padding-top: 160px;
-                padding-bottom: 160px;
-                min-height: auto;
-            }
+            .hero-layout, .about-layout { flex-direction: column; grid-template-columns: 1fr; }
+            .hero-visual { display: none; }
+            #hero { padding-top: 160px; padding-bottom: 160px; min-height: auto; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            .stat-item:nth-child(2) { border-inline-end: none; }
+            .features-grid { grid-template-columns: 1fr; }
+            .process-grid { grid-template-columns: 1fr; gap: 32px; }
+            .process-grid::before { display: none; }
+            .testimonials-grid { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 600px) {
             .nav-links { display: none; }
             .hamburger { display: block; }
             .hero-actions { flex-direction: column; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Hero Glow — always physical right to avoid RTL flip artifact */
+        @keyframes heroGlowPulse {
+            0%, 100% { opacity: 0.35; }
+            50% { opacity: 0.65; }
+        }
+        .hero-glow {
+            position: absolute;
+            right: -12%;
+            top: -10%;
+            width: 72%;
+            height: 120%;
+            background: radial-gradient(ellipse at 70% 40%, color-mix(in srgb, var(--color-secondary) 90%, transparent) 0%, transparent 58%);
+            pointer-events: none;
+            animation: heroGlowPulse 9s ease-in-out infinite;
+            z-index: 0;
+        }
+        .hero-layout { position: relative; z-index: 1; }
+
+        /* Brand Ticker — full container width, sits below hero-layout */
+        .brand-ticker-wrapper {
+            overflow: hidden;
+            padding-block: 20px 0;
+            margin-top: 40px;
+            border-top: 1px solid var(--hero-card-border);
+            direction: ltr;
+            position: relative;
+            z-index: 1;
+        }
+        .brand-ticker-track {
+            display: flex;
+            width: max-content;
+            animation: tickerScroll 32s linear infinite;
+        }
+        .brand-ticker-segment {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            padding-inline-end: 32px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.8125rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            color: color-mix(in srgb, var(--color-surface) 35%, transparent);
+        }
+        .brand-ticker-segment .dot {
+            color: color-mix(in srgb, var(--color-highlight) 35%, transparent);
+            font-size: 0.5rem;
+        }
+        @keyframes tickerScroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* Testimonial Carousel */
+        .carousel-wrapper {
+            max-width: 760px;
+            margin: 56px auto 0;
+        }
+        .carousel-container {
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .testimonial-card {
+            flex: 0 0 100%;
+            padding: 48px;
+            background-color: var(--bg-surface-a);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+        }
+        .testimonial-stars {
+            color: var(--color-primary);
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+            letter-spacing: 3px;
+        }
+        .testimonial-text {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            color: var(--text-body);
+            margin-bottom: 28px;
+            font-style: italic;
+        }
+        .testimonial-meta { display: flex; align-items: center; gap: 14px; }
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+            color: var(--color-highlight);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.9375rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .testimonial-author {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.9375rem;
+            color: var(--text-heading);
+            margin-bottom: 2px;
+        }
+        .testimonial-role { font-size: 0.8125rem; color: var(--text-muted); }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+        }
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--border-subtle);
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        .carousel-dot.active {
+            background-color: var(--color-primary);
+            transform: scale(1.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 860px) {
+            .hero-layout, .about-layout { flex-direction: column; grid-template-columns: 1fr; }
+            .hero-visual { display: none; }
+            #hero { padding-top: 160px; padding-bottom: 160px; min-height: auto; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            .stat-item:nth-child(2) { border-inline-end: none; }
+            .features-grid { grid-template-columns: 1fr; }
+            .testimonial-card { padding: 32px 24px; }
+        }
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+            .hero-actions { flex-direction: column; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
         }
 
         /* RTL Support */
         [dir="rtl"] .hero-pill-icon { margin-left: 16px; margin-right: 0; }
         [dir="rtl"] .nav-links { gap: 32px; }
         [dir="rtl"] .footer-layout { text-align: right; }
+        [dir="rtl"] .close-menu { right: auto; left: 24px; }
         @media (min-width: 768px) and (max-width: 1200px) {
-             [dir="rtl"] .footer-layout { flex-direction: row-reverse; }
+            [dir="rtl"] .footer-layout { flex-direction: row-reverse; }
         }
     </style>
 </head>
@@ -576,6 +764,7 @@
             <div class="nav-links">
                 <a href="#about" data-en="About Us" data-he="עלינו">About Us</a>
                 <a href="#testimonials" data-en="Testimonials" data-he="המלצות">Testimonials</a>
+                <a href="#faq" data-en="FAQ" data-he="שאלות">FAQ</a>
                 <a href="#contact" data-en="Contact" data-he="צור קשר">Contact</a>
                 <button class="lang-switch" id="langToggle">
                     <span id="currentLang">EN</span>
@@ -590,98 +779,274 @@
         <button class="close-menu" id="closeMenu">×</button>
         <a href="#about" class="mobile-link" data-en="About Us" data-he="עלינו">About Us</a>
         <a href="#testimonials" class="mobile-link" data-en="Testimonials" data-he="המלצות">Testimonials</a>
+        <a href="#faq" class="mobile-link" data-en="FAQ" data-he="שאלות">FAQ</a>
         <a href="#contact" class="mobile-link" data-en="Contact" data-he="צור קשר">Contact</a>
     </div>
 
+    <!-- HERO -->
     <section id="hero" class="surface-hero">
-        <div class="container hero-layout">
-            <div class="hero-content">
-                <h1 data-en="Luxury In-Car <span class='emphasized'>Media Screens</span>" data-he="מסכי מדיה <span class='emphasized'>יוקרתיים</span> לרכב">Luxury In-Car <span class="emphasized">Media Screens</span></h1>
-                <p data-en="Elevate your driving experience with premium, sharply designed media installations. Lorem ipsum dolor sit amet, consectetur adipiscing elit." data-he="שדרג את חווית הנהיגה שלך עם התקנות מדיה פרימיום. לורם איפסום דולור סיט אמט.">Elevate your driving experience with premium, sharply designed media installations. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <div class="hero-actions">
-                    <a href="#contact" class="btn btn-primary" data-en="Get a Quote" data-he="קבל הצעת מחיר">Get a Quote</a>
-                    <a href="#about" class="btn btn-secondary" data-en="Learn More" data-he="למידע נוסף">Learn More</a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <img src="hero-image.jpg" alt="Luxury Car Interior Screen" class="hero-image">
-                <div class="hero-card">
-                    <h3 data-en="Premium Interface" data-he="ממשק פרימיום">Premium Interface</h3>
-                    <p data-en="Seamless integration with your vehicle's aesthetic." data-he="שילוב חלק עם האסתטיקה של הרכב שלך.">Seamless integration with your vehicle's aesthetic.</p>
-                </div>
-                <div class="hero-pill">
-                    <div class="hero-pill-icon"></div>
-                    <span data-en="4K Resolution Displays" data-he="תצוגות ברזולוציית 4K">4K Resolution Displays</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="divider-wrapper">
-            <svg preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1200 120L0 120 0 0 1200 120z" fill="var(--divider-fill-b)"/>
-            </svg>
-        </div>
-    </section>
-
-    <section id="about" class="surface-b">
-        <div class="container about-layout">
-            <img src="about-image.jpg" alt="Professional Screen Installation Process" class="about-image">
-            <div>
-                <h2 data-en="Excellence in <span class='emphasized'>Installation</span>" data-he="מצוינות ב<span class='emphasized'>התקנה</span>">Excellence in <span class="emphasized">Installation</span></h2>
-                <p data-en="Paragon Technologies stands at the intersection of luxury and technology. We provide bespoke media screen solutions tailored to the interior of high-end vehicles." data-he="חברת פראגון טכנולוגיות נמצאת בצומת של יוקרה וטכנולוגיה. אנו מספקים פתרונות מסכי מדיה בהתאמה אישית.">Paragon Technologies stands at the intersection of luxury and technology. We provide bespoke media screen solutions tailored to the interior of high-end vehicles.</p>
-                <p data-en="Dolor sit amet, consectetur adipiscing elit. Nullam in odio vel lectus convallis accumsan." data-he="דולור סיט אמט, קונסקטור אדיפיסינג אלית. נואלם אין אודיו ול לקטוס קונוואליס.">Dolor sit amet, consectetur adipiscing elit. Nullam in odio vel lectus convallis accumsan.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="testimonials" class="surface-c">
+        <div class="hero-glow" aria-hidden="true"></div>
         <div class="container">
-            <h2 style="text-align: center;" data-en="Client <span class='emphasized'>Experiences</span>" data-he="חוויות <span class='emphasized'>לקוחות</span>">Client <span class="emphasized">Experiences</span></h2>
-            
-            <div class="carousel-container">
-                <div class="carousel-track" id="testimonialTrack">
-                    <div class="testimonial-card">
-                        <p class="testimonial-text" data-en="&quot;The installation was flawless. It feels like it came straight from the factory.&quot;" data-he="&quot;ההתקנה הייתה מושלמת. זה מרגיש כאילו זה הגיע ישר מהמפעל.&quot;">"The installation was flawless. It feels like it came straight from the factory."</p>
-                        <p class="testimonial-author">- David R.</p>
+            <div class="hero-layout">
+                <div class="hero-content">
+                    <span class="hero-eyebrow" data-en="Premium Automotive Technology" data-he="טכנולוגיית רכב פרימיום">Premium Automotive Technology</span>
+                    <h1 data-en="Upgrade Your Infotainment.<br><span class='emphasized'>Not Your Aesthetic.</span>" data-he="שדרג את מערכת המידע.<br><span class='emphasized'>לא את המראה.</span>">Upgrade Your Infotainment.<br><span class="emphasized">Not Your Aesthetic.</span></h1>
+                    <p data-en="Precision-fitted 4K media screens engineered to match your vehicle's factory interior. OEM-grade integration. 1-day installation. Certified professionals." data-he="מסכי מדיה 4K המותאמים בדיוק לפנים הרכב שלך. שילוב ברמת יצרן. התקנה ביום אחד. אנשי מקצוע מוסמכים.">Precision-fitted 4K media screens engineered to match your vehicle's factory interior. OEM-grade integration. 1-day installation. Certified professionals.</p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn btn-primary" data-en="Get a Free Quote" data-he="קבל הצעת מחיר חינמית">Get a Free Quote</a>
                     </div>
-                    <div class="testimonial-card">
-                        <p class="testimonial-text" data-en="&quot;Paragon transformed the interior of my car. True luxury and premium service.&quot;" data-he="&quot;פראגון שינו את הפנים של הרכב שלי. יוקרה אמיתית ושירות פרימיום.&quot;">"Paragon transformed the interior of my car. True luxury and premium service."</p>
-                        <p class="testimonial-author">- Sarah M.</p>
+                    <div class="hero-trust">
+                        <span data-en="500+ vehicles upgraded" data-he="500+ רכבים שודרגו">500+ vehicles upgraded</span>
+                        <span class="hero-trust-divider"></span>
+                        <span data-en="Factory-precision fit" data-he="התאמה ברמת מפעל">Factory-precision fit</span>
+                        <span class="hero-trust-divider"></span>
+                        <span data-en="Certified technicians" data-he="טכנאים מוסמכים">Certified technicians</span>
                     </div>
-                    <div class="testimonial-card">
-                        <p class="testimonial-text" data-en="&quot;Sharp, beautiful screens and highly professional technicians.&quot;" data-he="&quot;מסכים חדים ויפים וטכנאים מקצועיים ביותר.&quot;">"Sharp, beautiful screens and highly professional technicians."</p>
-                        <p class="testimonial-author">- Michael T.</p>
+                </div>
+                <div class="hero-visual">
+                    <img src="hero-image.jpg" alt="Luxury Car Interior with Paragon Media Screen" class="hero-image">
+                    <div class="hero-card">
+                        <h3 data-en="OEM-Grade Precision" data-he="דיוק ברמת יצרן">OEM-Grade Precision</h3>
+                        <p data-en="Indistinguishable from a factory installation." data-he="בלתי ניתן להבחנה מהתקנת מפעל.">Indistinguishable from a factory installation.</p>
                     </div>
+                    <div class="hero-pill">
+                        <div class="hero-pill-icon"></div>
+                        <span data-en="4K Ultra HD Resolution" data-he="רזולוציית 4K Ultra HD">4K Ultra HD Resolution</span>
+                    </div>
+                </div>
+            </div><!-- /.hero-layout -->
+            <div class="brand-ticker-wrapper">
+                <div class="brand-ticker-track">
+                    <div class="brand-ticker-segment">
+                        <span>BMW</span><span class="dot">●</span>
+                        <span>Mercedes-Benz</span><span class="dot">●</span>
+                        <span>Audi</span><span class="dot">●</span>
+                        <span>Lexus</span><span class="dot">●</span>
+                        <span>Toyota</span><span class="dot">●</span>
+                        <span>Hyundai</span><span class="dot">●</span>
+                        <span>Kia</span><span class="dot">●</span>
+                        <span>Volvo</span><span class="dot">●</span>
+                        <span>Land Rover</span><span class="dot">●</span>
+                        <span>Porsche</span><span class="dot">●</span>
+                        <span>Volkswagen</span><span class="dot">●</span>
+                        <span>Škoda</span><span class="dot">●</span>
+                    </div>
+                    <div class="brand-ticker-segment" aria-hidden="true">
+                        <span>BMW</span><span class="dot">●</span>
+                        <span>Mercedes-Benz</span><span class="dot">●</span>
+                        <span>Audi</span><span class="dot">●</span>
+                        <span>Lexus</span><span class="dot">●</span>
+                        <span>Toyota</span><span class="dot">●</span>
+                        <span>Hyundai</span><span class="dot">●</span>
+                        <span>Kia</span><span class="dot">●</span>
+                        <span>Volvo</span><span class="dot">●</span>
+                        <span>Land Rover</span><span class="dot">●</span>
+                        <span>Porsche</span><span class="dot">●</span>
+                        <span>Volkswagen</span><span class="dot">●</span>
+                        <span>Škoda</span><span class="dot">●</span>
+                    </div>
+                </div>
+            </div><!-- /.brand-ticker-wrapper -->
+        </div><!-- /.container -->
+
+        <div class="divider-wrapper">
+            <svg preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,80 C300,120 900,40 1200,80 L1200,120 L0,120 Z" fill="var(--divider-fill-b)"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <section id="stats" class="surface-b">
+        <div class="container">
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-number" data-en="500+" data-he="+500">500+</div>
+                    <div class="stat-label" data-en="Vehicles Upgraded" data-he="רכבים שודרגו">Vehicles Upgraded</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-en="10+" data-he="+10">10+</div>
+                    <div class="stat-label" data-en="Years of Experience" data-he="שנות ניסיון">Years of Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-en="1 Day" data-he="יום אחד">1 Day</div>
+                    <div class="stat-label" data-en="Installation Time" data-he="זמן התקנה">Installation Time</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-en="100%" data-he="100%">100%</div>
+                    <div class="stat-label" data-en="OEM-Fit Guarantee" data-he="אחריות התאמה ליצרן">OEM-Fit Guarantee</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="surface-a">
+        <div class="container about-layout">
+            <img src="about-image.jpg" alt="Paragon Certified Technician Performing Precision Screen Installation" class="about-image">
+            <div>
+                <span class="section-label" data-en="Our Story" data-he="הסיפור שלנו">Our Story</span>
+                <h2 data-en="Excellence in <span class='emphasized'>Every Installation</span>" data-he="מצוינות ב<span class='emphasized'>כל התקנה</span>">Excellence in <span class="emphasized">Every Installation</span></h2>
+                <p data-en="Paragon Technologies stands at the intersection of luxury and precision engineering. We provide bespoke media screen solutions crafted specifically for the interior of high-end vehicles — with zero compromise on your car's original aesthetic." data-he="פראגון טכנולוגיות נמצאת בצומת של יוקרה ודיוק הנדסי. אנו מספקים פתרונות מסך מדיה בהתאמה אישית, מעוצבים במיוחד לפנים רכבי יוקרה — ללא פשרות על האסתטיקה המקורית של הרכב שלך.">Paragon Technologies stands at the intersection of luxury and precision engineering. We provide bespoke media screen solutions crafted specifically for the interior of high-end vehicles — with zero compromise on your car's original aesthetic.</p>
+                <p data-en="With over a decade of experience and 500+ completed installations, our factory-trained technicians work exclusively with premium OEM-grade display systems. The result is an upgrade that looks, feels, and performs as though it came straight from the manufacturer." data-he="עם למעלה מעשור ניסיון ו-500+ התקנות מושלמות, הטכנאים שלנו המוכשרים ברמת יצרן עובדים אך ורק עם מערכות תצוגה פרימיום ברמת OEM. התוצאה היא שדרוג שנראה, מרגיש ומתפקד כאילו יצא ישירות מהיצרן.">With over a decade of experience and 500+ completed installations, our factory-trained technicians work exclusively with premium OEM-grade display systems. The result is an upgrade that looks, feels, and performs as though it came straight from the manufacturer.</p>
+                <a href="#contact" class="btn btn-primary" data-en="Book a Free Consultation" data-he="קבע ייעוץ חינמי">Book a Free Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="surface-b">
+        <div class="container">
+            <span class="section-label" data-en="Why Paragon" data-he="למה פראגון">Why Paragon</span>
+            <h2 data-en="Built Different. <span class='emphasized'>By Design.</span>" data-he="בנוי אחרת. <span class='emphasized'>במכוון.</span>">Built Different. <span class="emphasized">By Design.</span></h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+                    </svg>
+                    <h3 data-en="Factory-Precision Fit" data-he="התאמה בדיוק ברמת מפעל">Factory-Precision Fit</h3>
+                    <p data-en="Every screen is engineered specifically for your vehicle's make, model, and year. Custom mounting brackets and seamless trim integration — no visible gaps, no aftermarket look." data-he="כל מסך מהונדס במיוחד לדגם, שנה ויצרן הרכב שלך. סוגרי הרכבה מותאמים אישית ושילוב חלק של הגימור — ללא רווחים גלויים, ללא מראה של אביזרי אחרי שוק.">Every screen is engineered specifically for your vehicle's make, model, and year. Custom mounting brackets and seamless trim integration — no visible gaps, no aftermarket look.</p>
+                </div>
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+                    </svg>
+                    <h3 data-en="Crystal-Clear 4K Display" data-he="תצוגת 4K קריסטל בהיר">Crystal-Clear 4K Display</h3>
+                    <p data-en="Ultra HD 4K panels with maximum contrast and anti-glare coating. Sharp and vivid in direct sunlight, day or night. Full support for Apple CarPlay and Android Auto." data-he="פנלים 4K Ultra HD עם ניגודיות מקסימלית וציפוי אנטי-בוהק. חד ותוסס בשמש ישירה, יום ולילה. תמיכה מלאה ב-Apple CarPlay וב-Android Auto.">Ultra HD 4K panels with maximum contrast and anti-glare coating. Sharp and vivid in direct sunlight, day or night. Full support for Apple CarPlay and Android Auto.</p>
+                </div>
+                <div class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    <h3 data-en="Certified Professional Installation" data-he="התקנה מקצועית מוסמכת">Certified Professional Installation</h3>
+                    <p data-en="Our technicians are factory-trained with 500+ installations completed. From start to finish, every job is executed with precision — no shortcuts, no compromises." data-he="הטכנאים שלנו מוכשרים ברמת יצרן עם 500+ התקנות שהושלמו. מתחילה ועד סוף, כל עבודה מבוצעת בדיוק — ללא קיצורי דרך, ללא פשרות.">Our technicians are factory-trained with 500+ installations completed. From start to finish, every job is executed with precision — no shortcuts, no compromises.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="surface-hero">
+        <div class="container">
+            <span class="section-label" data-en="Client Experiences" data-he="חוויות לקוחות">Client Experiences</span>
+            <h2 data-en="What Our Clients <span class='emphasized'>Say</span>" data-he="מה הלקוחות שלנו <span class='emphasized'>אומרים</span>">What Our Clients <span class="emphasized">Say</span></h2>
+            <div class="carousel-wrapper">
+                <div class="carousel-container">
+                    <div class="carousel-track" id="testimonialTrack">
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars">★★★★★</div>
+                            <p class="testimonial-text" data-en="&quot;The screen looks completely OEM. My passengers assume it came factory-installed. Installation was done in under 5 hours — exactly what was promised.&quot;" data-he="&quot;המסך נראה לגמרי כמו התקנת מפעל. הנוסעים שלי מניחים שהוא הגיע מהמפעל. ההתקנה בוצעה בתוך פחות מ-5 שעות — בדיוק כפי שהובטח.&quot;">"The screen looks completely OEM. My passengers assume it came factory-installed. Installation was done in under 5 hours — exactly what was promised."</p>
+                            <div class="testimonial-meta">
+                                <div class="testimonial-avatar">DR</div>
+                                <div>
+                                    <div class="testimonial-author">David R.</div>
+                                    <div class="testimonial-role" data-en="BMW 5 Series, 2022" data-he="BMW סדרה 5, 2022">BMW 5 Series, 2022</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars">★★★★★</div>
+                            <p class="testimonial-text" data-en="&quot;Paragon transformed my S-Class interior. The 4K display is stunning and Apple CarPlay works flawlessly. You'd never know it wasn't original.&quot;" data-he="&quot;פראגון שינתה את הפנים של ה-S-Class שלי. תצוגת ה-4K מדהימה וה-Apple CarPlay עובד ללא רבב. לעולם לא תוכל לדעת שזה לא מקורי.&quot;">"Paragon transformed my S-Class interior. The 4K display is stunning and Apple CarPlay works flawlessly. You'd never know it wasn't original."</p>
+                            <div class="testimonial-meta">
+                                <div class="testimonial-avatar">SM</div>
+                                <div>
+                                    <div class="testimonial-author">Sarah M.</div>
+                                    <div class="testimonial-role" data-en="Mercedes S-Class, 2021" data-he="מרצדס S-Class, 2021">Mercedes S-Class, 2021</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-stars">★★★★★</div>
+                            <p class="testimonial-text" data-en="&quot;I worried it wouldn't match my wood trim. It matched perfectly. The technicians were meticulous and the result looks sharp and completely integrated.&quot;" data-he="&quot;חששתי שזה לא יתאים לגימור העץ שלי. זה התאים בצורה מושלמת. הטכנאים היו קפדניים והתוצאה נראית חדה ומשולבת לחלוטין.&quot;">"I worried it wouldn't match my wood trim. It matched perfectly. The technicians were meticulous and the result looks sharp and completely integrated."</p>
+                            <div class="testimonial-meta">
+                                <div class="testimonial-avatar">MT</div>
+                                <div>
+                                    <div class="testimonial-author">Michael T.</div>
+                                    <div class="testimonial-role" data-en="Lexus ES, 2023" data-he="לקסוס ES, 2023">Lexus ES, 2023</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-dots">
+                    <button class="carousel-dot active" aria-label="Slide 1"></button>
+                    <button class="carousel-dot" aria-label="Slide 2"></button>
+                    <button class="carousel-dot" aria-label="Slide 3"></button>
                 </div>
             </div>
         </div>
 
         <div class="divider-wrapper">
             <svg preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 120 L1200 120 L1200 0 Z" fill="var(--divider-fill-a)"/>
+                <path d="M0,60 C300,110 900,10 1200,60 L1200,120 L0,120 Z" fill="var(--divider-fill-a)"/>
             </svg>
         </div>
     </section>
 
-    <section id="contact" class="surface-a">
+    <!-- FAQ -->
+    <section id="faq" class="surface-a">
+        <div class="container">
+            <span class="section-label" data-en="Common Questions" data-he="שאלות נפוצות">Common Questions</span>
+            <h2 data-en="Everything You Need <span class='emphasized'>to Know</span>" data-he="כל מה שאתה צריך <span class='emphasized'>לדעת</span>">Everything You Need <span class="emphasized">to Know</span></h2>
+            <div class="faq-layout">
+                <details>
+                    <summary>
+                        <span data-en="Will the screen match my car's existing interior?" data-he="האם המסך יתאים לפנים הקיים של הרכב שלי?">Will the screen match my car's existing interior?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </summary>
+                    <p data-en="Every screen we install is precision-engineered for your specific make, model, and year. We use OEM-grade mounting brackets and custom trim pieces, so the result is indistinguishable from a factory installation — including matching leather, wood, or carbon fibre trim." data-he="כל מסך שאנו מתקינים מהונדס בדיוק לדגם, שנה ויצרן הרכב הספציפי שלך. אנו משתמשים בסוגרי הרכבה ברמת OEM וחלקי גימור מותאמים אישית, כך שהתוצאה בלתי ניתנת להבחנה מהתקנת מפעל — כולל התאמה לגימור עור, עץ או סיבי פחמן.">Every screen we install is precision-engineered for your specific make, model, and year. We use OEM-grade mounting brackets and custom trim pieces, so the result is indistinguishable from a factory installation — including matching leather, wood, or carbon fibre trim.</p>
+                </details>
+                <details>
+                    <summary>
+                        <span data-en="How long does the installation take?" data-he="כמה זמן לוקחת ההתקנה?">How long does the installation take?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </summary>
+                    <p data-en="Most installations are completed within a single day — typically 4 to 6 hours. Drop your vehicle off in the morning and pick it up the same afternoon, fully configured and ready to drive." data-he="רוב ההתקנות מסתיימות בתוך יום אחד — בדרך כלל 4 עד 6 שעות. הפקד את רכבך בבוקר ואסוף אותו באותה אחר הצהריים, מוגדר ומוכן לנסיעה.">Most installations are completed within a single day — typically 4 to 6 hours. Drop your vehicle off in the morning and pick it up the same afternoon, fully configured and ready to drive.</p>
+                </details>
+                <details>
+                    <summary>
+                        <span data-en="Do your screens support Apple CarPlay and Android Auto?" data-he="האם המסכים תומכים ב-Apple CarPlay ו-Android Auto?">Do your screens support Apple CarPlay and Android Auto?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </summary>
+                    <p data-en="Yes. All our screen systems fully support wireless Apple CarPlay, Android Auto, and screen mirroring. We configure everything before you pick up the vehicle, so it's ready to use the moment you drive away." data-he="כן. כל מערכות המסך שלנו תומכות במלואן ב-Apple CarPlay אלחוטי, Android Auto ושיקוף מסך. אנו מגדירים הכל לפני שאתה אוסף את הרכב, כך שהמערכת מוכנה לשימוש ברגע שאתה נוסע.">Yes. All our screen systems fully support wireless Apple CarPlay, Android Auto, and screen mirroring. We configure everything before you pick up the vehicle, so it's ready to use the moment you drive away.</p>
+                </details>
+                <details>
+                    <summary>
+                        <span data-en="Which vehicle brands do you work with?" data-he="עם אילו מותגי רכב אתם עובדים?">Which vehicle brands do you work with?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </summary>
+                    <p data-en="We service all major luxury and premium brands including BMW, Mercedes-Benz, Audi, Lexus, Toyota, Hyundai, Kia, and more. Contact us with your specific model to confirm compatibility — we cover most vehicles from 2015 onwards." data-he="אנו מטפלים בכל המותגים היוקרתיים והפרימיום המרכזיים כולל BMW, מרצדס-בנץ, אאודי, לקסוס, טויוטה, יונדאי, קיה ועוד. צור איתנו קשר עם הדגם הספציפי שלך לאישור תאימות — אנחנו מכסים את רוב הרכבים משנת 2015 ואילך.">We service all major luxury and premium brands including BMW, Mercedes-Benz, Audi, Lexus, Toyota, Hyundai, Kia, and more. Contact us with your specific model to confirm compatibility — we cover most vehicles from 2015 onwards.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="surface-b">
         <div class="container contact-layout">
-            <h2 style="text-align: center;" data-en="Contact <span class='emphasized'>Us</span>" data-he="צור <span class='emphasized'>קשר</span>">Contact <span class="emphasized">Us</span></h2>
-            <p style="text-align: center; margin-bottom: 48px;" data-en="Ready to upgrade your vehicle? Reach out to schedule a consultation." data-he="מוכן לשדרג את הרכב שלך? פנה אלינו לקביעת פגישת ייעוץ.">Ready to upgrade your vehicle? Reach out to schedule a consultation.</p>
-            
+            <span class="section-label" data-en="Get in Touch" data-he="בואו נדבר">Get in Touch</span>
+            <h2 style="text-align: center;" data-en="Ready to <span class='emphasized'>Transform Your Vehicle?</span>" data-he="מוכן ל<span class='emphasized'>שנות את הרכב שלך?</span>">Ready to <span class="emphasized">Transform Your Vehicle?</span></h2>
+            <p style="text-align: center; margin-bottom: 48px;" data-en="Schedule a free consultation and receive a personalized quote within 24 hours. No commitment required." data-he="קבע ייעוץ חינמי וקבל הצעת מחיר מותאמת אישית תוך 24 שעות. ללא התחייבות.">Schedule a free consultation and receive a personalized quote within 24 hours. No commitment required.</p>
+
             <form id="contactForm">
                 <div class="form-group">
                     <label for="name" data-en="Full Name *" data-he="שם מלא *">Full Name *</label>
                     <input type="text" id="name" name="name" required autocomplete="name">
                 </div>
                 <div class="form-group">
-                    <label for="email" data-en="Email Address *" data-he="כתובת אימייל *">Email Address *</label>
-                    <input type="email" id="email" name="email" required autocomplete="email">
+                    <label for="phone" data-en="Phone Number *" data-he="מספר טלפון *">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required autocomplete="tel">
                 </div>
                 <div class="form-group">
-                    <label for="phone" data-en="Phone Number" data-he="מספר טלפון">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" autocomplete="tel">
+                    <label for="email" data-en="Email Address" data-he="כתובת אימייל">Email Address</label>
+                    <input type="email" id="email" name="email" autocomplete="email">
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 16px;" id="submitBtn" data-en="Send Message" data-he="שלח הודעה">Send Message</button>
+                <div class="form-group">
+                    <label for="vehicle" data-en="Your Vehicle (Make, Model &amp; Year)" data-he="הרכב שלך (יצרן, דגם ושנה)">Your Vehicle (Make, Model &amp; Year)</label>
+                    <input type="text" id="vehicle" name="vehicle" placeholder="">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 8px;" id="submitBtn" data-en="Get My Free Quote" data-he="קבל הצעת מחיר חינמית">Get My Free Quote</button>
+                <p style="text-align: center; margin-top: 16px; font-size: 0.875rem; color: var(--text-muted);" data-en="No commitment required. We respond within 24 hours." data-he="ללא התחייבות. אנחנו מגיבים תוך 24 שעות.">No commitment required. We respond within 24 hours.</p>
             </form>
         </div>
     </section>
@@ -699,30 +1064,29 @@
     </footer>
 
     <script>
-        // Language Switcher Logic
+        // Language Switcher
         const langToggle = document.getElementById('langToggle');
         const currentLangDisplay = document.getElementById('currentLang');
         const htmlElement = document.documentElement;
         let isHebrew = true;
 
-        // Apply Hebrew on initial load
-        document.querySelectorAll('[data-en][data-he]').forEach(el => {
-            el.innerHTML = el.getAttribute('data-he');
-        });
-        currentLangDisplay.textContent = 'HE';
+        function applyLanguage() {
+            document.querySelectorAll('[data-en][data-he]').forEach(el => {
+                el.innerHTML = isHebrew ? el.getAttribute('data-he') : el.getAttribute('data-en');
+            });
+            currentLangDisplay.textContent = isHebrew ? 'HE' : 'EN';
+        }
+
+        applyLanguage();
 
         langToggle.addEventListener('click', () => {
             isHebrew = !isHebrew;
             htmlElement.setAttribute('dir', isHebrew ? 'rtl' : 'ltr');
             htmlElement.setAttribute('lang', isHebrew ? 'he' : 'en');
-            currentLangDisplay.textContent = isHebrew ? 'HE' : 'EN';
-
-            document.querySelectorAll('[data-en][data-he]').forEach(el => {
-                el.innerHTML = isHebrew ? el.getAttribute('data-he') : el.getAttribute('data-en');
-            });
+            applyLanguage();
         });
 
-        // Mobile Menu Logic
+        // Mobile Menu
         const hamburger = document.getElementById('hamburgerMenu');
         const mobileMenu = document.getElementById('mobileMenu');
         const closeMenu = document.getElementById('closeMenu');
@@ -730,38 +1094,47 @@
 
         hamburger.addEventListener('click', () => mobileMenu.classList.add('active'));
         closeMenu.addEventListener('click', () => mobileMenu.classList.remove('active'));
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => mobileMenu.classList.remove('active'));
-        });
+        mobileLinks.forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('active')));
 
-        // Testimonial Carousel Logic
+        // Testimonial Carousel
         const track = document.getElementById('testimonialTrack');
         const cards = document.querySelectorAll('.testimonial-card');
+        const dots = document.querySelectorAll('.carousel-dot');
         let currentIndex = 0;
+        let carouselTimer = null;
 
-        function rotateCarousel() {
-            currentIndex = (currentIndex + 1) % cards.length;
-            const translateValue = isHebrew ? (currentIndex * 100) : -(currentIndex * 100);
-            track.style.transform = `translateX(${translateValue}%)`;
+        function goToSlide(index) {
+            currentIndex = index;
+            const dir = isHebrew ? 1 : -1;
+            track.style.transform = `translateX(${dir * currentIndex * 100}%)`;
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
         }
-        setInterval(rotateCarousel, 4000);
 
-        // Form Submission Feedback
+        function nextSlide() {
+            goToSlide((currentIndex + 1) % cards.length);
+        }
+
+        dots.forEach((dot, i) => dot.addEventListener('click', () => {
+            clearInterval(carouselTimer);
+            goToSlide(i);
+            carouselTimer = setInterval(nextSlide, 5000);
+        }));
+
+        carouselTimer = setInterval(nextSlide, 5000);
+
+        // Form Submission
         const form = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
 
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const originalText = submitBtn.innerHTML;
-            const originalColor = submitBtn.style.backgroundColor;
-            
             submitBtn.innerHTML = isHebrew ? 'נשלח בהצלחה!' : 'Sent Successfully!';
-            submitBtn.style.backgroundColor = 'color-mix(in srgb, var(--color-highlight) 50%, green)';
+            submitBtn.style.backgroundColor = 'color-mix(in srgb, var(--color-primary) 70%, green)';
             submitBtn.style.color = '#FFFFFF';
-            
             setTimeout(() => {
                 submitBtn.innerHTML = originalText;
-                submitBtn.style.backgroundColor = originalColor;
+                submitBtn.style.backgroundColor = '';
                 submitBtn.style.color = '';
                 form.reset();
             }, 3000);
